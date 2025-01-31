@@ -1,0 +1,17 @@
+<head>
+    <title>Edit book</title>
+    <meta charset="utf-8" lang="en">
+</head>
+<body>
+    <div>
+        <form method="post" action="/edit">
+            <h1><%=book_name%></h1>
+            <label>Review:</label>
+            <textarea name="review_desc" cols="30" rows="10"><% if (locals.review){%><%=review %> <% } %></textarea>
+            <label>Enter rating out of 5:</label>
+            <input type="number" name="rating" min="1" max="5" <% if (locals.rating){%>value="<%=rating%>"<% } %>/>
+            <input type="hidden" name="olid" value="<%=olid%>"/>
+            <input type="submit" value="submit"/>
+        </form>
+    </div>
+</body>

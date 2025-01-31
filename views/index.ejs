@@ -1,0 +1,53 @@
+<head>
+    <title>The Books I've Read</title>
+    <meta charset="utf-8" lang="en">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <%-include ("header.ejs")%>
+    <div id="nav">
+        <div id="intro">
+            <h3> A perfect spot to log your book reviews!</h3>
+        </div>
+        <div class="add">
+            <form method="get" action="/search">
+                <input type="submit" class="btn shadow" id="add_btn" value="Add new book"/>
+            </form>
+        </div>
+        <%if (locals.books){%>
+            <%if (books.length!=0){%>
+                <div class="delete">
+                    <form method="get" action="/delete">
+                        <input type="submit" class="btn shadow" id="delete_btn"+ value="Delete books"/>
+                    </form>
+                </div>
+            <%}%>
+        <%}%>
+    </div>
+    <div class="book_list">
+        <%if (locals.books){%>
+            <%if (books.length!=0){%>
+                <% books.forEach((book)=>{%>
+                    <div class="book">
+                    <div class="edit">
+                        <form method="get" action="/edit">
+                            <input type="submit" class="btn edit_btn shadow" id="edit_btn<%=book["olid"]%>"  value="">
+                            <input type="hidden" name="b_olid" value="<%=book["olid"]%>"/>
+                        </form>
+                    </div>
+                    <div class="book_desc">
+                        <h1><%=book["name"] %></h1>
+                        <img src=<%=book["img_url"]%> loading="lazy" >
+                        <h3><%=book["review"]%></h3>
+                        <div class="rating">
+                            <h4><%=book["rating"]%></h4>
+                        </div>
+                    </div>
+                </div>
+                <%})%>
+            <%}%>
+        <%}%>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+</body>

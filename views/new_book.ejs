@@ -1,0 +1,57 @@
+<head>
+    <title>New Book Entry</title>
+    <meta charset="utf-8" lang="en">
+</head>
+<body>
+    <div>
+        <form method="post" action="/search">
+            <div>
+                <label>Enter book name:</label>
+                <input type="text" name="book_name" <% if (locals.title){%> value="<%=title%>" <% } %>/>
+            </div>
+            <div>
+                <label>Enter review:</label>
+                <textarea name="review_desc"cols="30" rows="10" required><% if (locals.review){%><%=review %> <% } %></textarea>
+            </div>
+            <div>
+                <label>Enter rating out of 5:</label>
+                <input type="number" name="rating" min="1" max="5" required<% if (locals.rating){%>value="<%=rating%>"<% } %>/>
+            </div>
+             <div>
+                <input type="submit" value="submit"/>
+            </div>
+        </form>
+    </div>
+    <div>
+        <%if (locals.error){%>
+            <div>
+                <h1><%=error%></h1>
+            </div>
+        <% }else if (locals.searched_book){%>
+            <div>
+                <h2><%= searched_book %></h2>
+                <img src="<%=searched_book_img%>"/>
+                <h3><%=searched_book_author%></h3>
+                <% if (locals.review){ %>
+                    <h4>Your Review</h4>
+                    <p><%=review%></p>
+                    <h4>Your Rating</h4>
+                    <p><%=rating%></p>
+                    <h4>Add this book?</h4> 
+                <%}%>
+            </div>
+            <div>
+                <form method='post' action="/submit">
+                    <input type="hidden" name="olid" value="<%=olid%>">
+                    <input type="hidden" name="name" value="<%=searched_book%>">
+                    <input type="hidden" name="rating" value="<%=rating%>">
+                    <input type="hidden" name="review" value="<%=review%>">
+                    <input type="hidden" name="img_url" value="<%=searched_book_img%>">
+                    <input type="hidden" name="title" value="<%=title%>">
+                    <input type="submit"  value="Add this book">
+                </form>
+            </div>
+        <%}%>
+    </div>
+
+</body>
