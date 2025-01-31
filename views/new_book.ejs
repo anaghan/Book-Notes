@@ -23,7 +23,7 @@
                     <h1><%doc.title%></h1>
                     <img src=<%=api_img%>+doc.cover_edition_key>
                     <%(doc.author_name).forEach((author)=>{%>
-                        <h3><%JSON.parse(author)%></h3>
+                        <h3><%author%></h3>
                     <%})%>
                     <form method="post" action="/review">
                         <input type="hidden" name="olid" value="<%=doc.cover_edition_key%>">
