@@ -4,8 +4,12 @@
 </head>
 <body>
     <div>
-        <form method="post" action="/edit">
+        <form method="post" action="/review">
             <h1><%=book_name%></h1>
+            <img src="<%=img%>"/>
+            <%=authors%><%.forEach((author)=>{%>
+                <h3><%JSON.parse(author)%></h3>
+            <%})%>
             <label>Review:</label>
             <textarea name="review_desc" cols="30" rows="10"><% if (locals.review){%><%=review %> <% } %></textarea>
             <label>Enter rating out of 5:</label>

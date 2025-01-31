@@ -1,6 +1,6 @@
 <head>
     <title>New Book Entry</title>
-    <meta charset="utf-8" lang="en">
+    <meta charset="utf-8">
 </head>
 <body>
     <div>
@@ -8,16 +8,6 @@
             <div>
                 <label>Enter book name:</label>
                 <input type="text" name="book_name" <% if (locals.title){%> value="<%=title%>" <% } %>/>
-            </div>
-            <div>
-                <label>Enter review:</label>
-                <textarea name="review_desc"cols="30" rows="10" required><% if (locals.review){%><%=review %> <% } %></textarea>
-            </div>
-            <div>
-                <label>Enter rating out of 5:</label>
-                <input type="number" name="rating" min="1" max="5" required<% if (locals.rating){%>value="<%=rating%>"<% } %>/>
-            </div>
-             <div>
                 <input type="submit" value="submit"/>
             </div>
         </form>
@@ -27,29 +17,21 @@
             <div>
                 <h1><%=error%></h1>
             </div>
-        <% }else if (locals.searched_book){%>
+        <% }else if (locals.docs){%>
             <div>
-                <h2><%= searched_book %></h2>
-                <img src="<%=searched_book_img%>"/>
-                <h3><%=searched_book_author%></h3>
-                <% if (locals.review){ %>
-                    <h4>Your Review</h4>
-                    <p><%=review%></p>
-                    <h4>Your Rating</h4>
-                    <p><%=rating%></p>
-                    <h4>Add this book?</h4> 
-                <%}%>
-            </div>
-            <div>
-                <form method='post' action="/submit">
-                    <input type="hidden" name="olid" value="<%=olid%>">
-                    <input type="hidden" name="name" value="<%=searched_book%>">
-                    <input type="hidden" name="rating" value="<%=rating%>">
-                    <input type="hidden" name="review" value="<%=review%>">
-                    <input type="hidden" name="img_url" value="<%=searched_book_img%>">
-                    <input type="hidden" name="title" value="<%=title%>">
-                    <input type="submit"  value="Add this book">
-                </form>
+                <%docs.forEach((doc)=>{%>
+                    <h1><%doc.title%></h1>
+                    <img src=<%=api_img%>+doc.cover_edition_key>
+                    <%(doc.author_name).forEach((author)=>{%>
+                        <h3><%JSON.parse(author)%></h3>
+                    <%})%>
+                    <form method="post" action="/review">
+                        <input type="hidden" name="olid" value="<%=doc.cover_edition_key%>">
+                        <input type="hidden" name="author_name" value="<%=doc.author_name%>">
+                        <input type="hidden" name="title" value="<%=doc.title%>">
+                        <input type="submit"  value="Add this book">
+                    </form>
+                <%})%>
             </div>
         <%}%>
     </div>
