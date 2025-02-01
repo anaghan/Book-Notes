@@ -18,21 +18,26 @@
                 <h1><%=error%></h1>
             </div>
         <% }else if (locals.docs){%>
-            <div>
+            
                 <%docs.forEach((doc)=>{%>
-                    <h1><%doc.title%></h1>
-                    <img src=<%=api_img%>+doc.cover_edition_key>
-                    <%(doc.author_name).forEach((author)=>{%>
-                        <h3><%author%></h3>
-                    <%})%>
-                    <form method="post" action="/review">
-                        <input type="hidden" name="olid" value="<%=doc.cover_edition_key%>">
-                        <input type="hidden" name="author_name" value="<%=doc.author_name%>">
-                        <input type="hidden" name="title" value="<%=doc.title%>">
-                        <input type="submit"  value="Add this book">
-                    </form>
+                    <% if (doc["cover_edition_key"] && doc["author_name"]){%>
+                        <div>
+                            <h1><%=doc.title%></h1>
+                            <img src="<%=api_img%><%=doc["cover_edition_key"]%>-M.jpg">
+                    
+                            <%doc["author_name"].forEach((author)=>{%>
+                                <h3><%=author%></h3>
+                            <%})%>
+                            <form method="get" action="/review">
+                                <input type="hidden" name="olid" value="<%=doc["cover_edition_key"]%>">
+                                <input type="hidden" name="author_name" value="<%=doc["author_name"]%>">
+                                <input type="hidden" name="title" value="<%=doc.title%>">
+                                <input type="submit"  value="Add this book">
+                            </form>
+                        </div>
+                    <%}%>
                 <%})%>
-            </div>
+                
         <%}%>
     </div>
 

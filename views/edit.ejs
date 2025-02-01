@@ -5,10 +5,10 @@
 <body>
     <div>
         <form method="post" action="/review">
-            <h1><%=title_name%></h1>
+            <h1><%=book_name%></h1>
             <img src="<%=img%>"/>
-            <%<%=author_name%><%.forEach((author)=>{%>
-                <h3><%author%></h3>
+            <%author_name.forEach((author)=>{%>
+                <h3><%=author%></h3>
             <%})%>
             <label>Review:</label>
             <textarea name="review_desc" cols="30" rows="10"><% if (locals.review){%><%=review %> <% } %></textarea>
