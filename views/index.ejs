@@ -18,7 +18,7 @@
             <%if (books.length!=0){%>
                 <div class="delete">
                     <form method="get" action="/delete">
-                        <input type="submit" class="btn shadow" id="delete_btn"+ value="Delete books"/>
+                        <input type="submit" class="btn shadow" id="delete_btn" value="Delete books"/>
                     </form>
                 </div>
             <%}%>
@@ -31,7 +31,7 @@
                     <div class="book">
                     <div class="edit">
                         <form method="get" action="/edit">
-                            <input type="submit" class="btn edit_btn shadow" id="edit_btn<%=book["olid"]%>"  value="">
+                            <input type="submit" class="btn shadow edit_btn" id="edit_btn<%=book["olid"]%>"  value="">
                             <input type="hidden" name="olid" value="<%=book["olid"]%>"/>
                         </form>
                     </div>
