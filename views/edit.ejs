@@ -1,24 +1,30 @@
 <head>
     <title>Edit book</title>
     <meta charset="utf-8">
+    <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-    <div>
-        <form method="post" action="/review">
-            <h1><%=book_name%></h1>
-            <img src="<%=img%>"/>
-            <%author_name.forEach((author)=>{%>
-                <h3><%=author%></h3>
-            <%})%>
-            <label>Review:</label>
-            <textarea name="review_desc" cols="30" rows="10"><% if (locals.review){%><%=review %> <% } %></textarea>
-            <label>Enter rating out of 5:</label>
-            <input type="number" name="rating" min="1" max="5" <% if (locals.rating){%>value="<%=rating%>"<% } %>/>
+    <%-include ("header.ejs")%>
+        <form method="post" action="/review" id="review_form">
+            <div id="book_info">
+                <h1><%=book_name%></h1>
+                <img id="book_cover" src="<%=img%>"/>
+                <%author_name.forEach((author)=>{%>
+                    <h3><%=author%></h3>
+                <%})%>
+            </div>
+            <div id="review_sec" class="common_box">
+                <label>Review:</label>
+                <textarea name="review_desc" cols="30" rows="10"><% if (locals.review){%><%=review %> <% } %></textarea>
+                <label>Enter rating out of 5:</label>
+                <input type="number" name="rating" min="1" max="5" <% if (locals.rating){%>value="<%=rating%>"<% } %>/>
+            </div>
             <input type="hidden" name="olid" value="<%=olid%>"/>
             <input type="hidden" name="book_name" value="<%=book_name%>">
             <input type="hidden" name="img" value="<%=img%>">
             <input type="hidden" name="is_new_rec" value="<%=new_rec%>">
-            <input type="submit" value="submit"/>
+            <input type="submit" value="submit" class="btn shadow" id="post_btn"/>
         </form>
-    </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="script.js"></script>
 </body>

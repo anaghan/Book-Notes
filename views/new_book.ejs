@@ -1,12 +1,12 @@
 <head>
     <title>New Book Entry</title>
     <meta charset="utf-8">
-    <link href="styles_new_book.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
 </head>
 <body>
     <%-include ("header.ejs")%>
     <div id="search-area">
-    <div id="search">
+    <div id="search" class="common_box">
         <form method="post" action="/search">
                 <h3>Enter book name:</h3>
                 <input class="textbox" type="text" name="book_name" <% if (locals.title){%> value="<%=title%>" <% } %>/>
@@ -33,7 +33,7 @@
                                 <input type="hidden" name="olid" value="<%=doc["cover_edition_key"]%>">
                                 <input type="hidden" name="author_name" value="<%=doc["author_name"]%>">
                                 <input type="hidden" name="title" value="<%=doc.title%>">
-                                <input type="submit"  value="Add this book">
+                                <input class="btn shadow" id="confirm_btn<%=doc["cover_edition_key"]%>" type="submit"  value="Add this book">
                             </form>
                         </div>
                     <%}%>
