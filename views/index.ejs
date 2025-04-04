@@ -30,7 +30,7 @@
                 <% books.forEach((book)=>{%>
                     <div class="book">
                     <div class="edit">
-                        <form method="get" action="/edit">
+                        <form method="get" action="/review">
                             <input type="submit" class="btn shadow edit_btn" id="edit_btn<%=book["olid"]%>"  value="">
                             <input type="hidden" name="olid" value="<%=book["olid"]%>"/>
                         </form>

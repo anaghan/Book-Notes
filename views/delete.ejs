@@ -1,22 +1,27 @@
 <head>
     <title>Delete book</title>
     <meta charset="utf-8" lang="en">
+    <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-    <div>
-        <form action="/delete" method="post">
+    <%-include ("header.ejs")%>
+    <div class="del_div">
+        <form action="/delete" method="post" class="del_list" >
+            <h1 class="common_box">Select  the books you want to delete</h1>
             <%if (locals.books){%>
                 <% books.forEach((book)=>{%>
-                    <div>
+                    <div class="book_to_del">
                         <h1><%=book["name"] %></h1>
                         <img src=<%=book["img_url"]%>>
-                        <input type="checkbox" name="book_olid" value="<%=book["olid"]%>">
+                        <input type="checkbox" name="book_olid" value="<%=book["olid"]%>" class="checkbox">
                     </div>
                 <% }) %>
             <%}%>
             <div>
-                <input type="submit" value="Delete">
+                <input class="btn shadow" id="del_btn" type="submit" value="Delete">
             </div>
         </form>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="script.js"></script>
 </body>
