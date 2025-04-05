@@ -2,43 +2,50 @@
     <title>New Book Entry</title>
     <meta charset="utf-8">
     <link href="styles.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Outfit:wght@100..900&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <%-include ("header.ejs")%>
     <div id="search-area">
     <div id="search" class="common_box">
         <form method="post" action="/search">
-                <h3>Enter book name:</h3>
-                <input class="textbox" type="text" name="book_name" <% if (locals.title){%> value="<%=title%>" <% } %>/>
-                <input class="btn shadow" id="search_btn" type="submit" value="submit"/>
+                <h1 class="roboto-slab-heading">Enter the name of book:</h1>
+                <input class="textbox" type="text" name="book_name" autocomplete="off" <% if (locals.title){%> value="<%=title%>" <% } %>/>
+                <input class="btn shadow roboto-slab-heading" id="search_btn" type="submit" value="Search for Book"/>
         </form>
     </div>
     <div id="results">
         <%if (locals.error){%>
-            <div>
-                <h1><%=error%></h1>
+            <div class="error">
+                <h1 class="roboto-slab-heading"><%=error%></h1>
             </div>
         <% }else if (locals.docs){%>
-            
-                <%docs.forEach((doc)=>{%>
+                <%if (docs.length==0){%>
+                    <div class="error">                    
+                        <h1 class='roboto-slab-heading'>No books found</h1>
+                    </div>
+                <% }else{%>
+                    <%docs.forEach((doc)=>{%>
                     <% if (doc["cover_edition_key"] && doc["author_name"]){%>
                         <div>
-                            <h1><%=doc.title%></h1>
+                            <h1 class='roboto-slab-heading'><%=doc.title%></h1>
                             <img src="<%=api_img%><%=doc["cover_edition_key"]%>-M.jpg">
                     
                             <%doc["author_name"].forEach((author)=>{%>
-                                <h3><%=author%></h3>
+                                <h3 class='roboto-slab-heading'><%=author%></h3>
                             <%})%>
                             <form method="get" action="/review">
                                 <input type="hidden" name="olid" value="<%=doc["cover_edition_key"]%>">
                                 <input type="hidden" name="author_name" value="<%=doc["author_name"]%>">
                                 <input type="hidden" name="title" value="<%=doc.title%>">
-                                <input class="btn shadow" id="confirm_btn<%=doc["cover_edition_key"]%>" type="submit"  value="Add this book">
+                                <input class="btn shadow roboto-slab-heading" id="confirm_btn<%=doc["cover_edition_key"]%>" type="submit"  value="Add this book">
                             </form>
                         </div>
                     <%}%>
                 <%})%>
-                
+            <%}%>  
         <%}%>
     </div>
     </div>

@@ -2,23 +2,27 @@
     <title>Delete book</title>
     <meta charset="utf-8" lang="en">
     <link href="styles.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Outfit:wght@100..900&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+</head>
 </head>
 <body>
     <%-include ("header.ejs")%>
     <div class="del_div">
         <form action="/delete" method="post" class="del_list" >
-            <h1 class="common_box">Select  the books you want to delete</h1>
+            <h1 class="common_box roboto-slab-heading">Select  the books you want to delete</h1>
             <%if (locals.books){%>
                 <% books.forEach((book)=>{%>
                     <div class="book_to_del">
-                        <h1><%=book["name"] %></h1>
+                        <h1 class="roboto-slab-heading"><%=book["name"] %></h1>
                         <img src=<%=book["img_url"]%>>
                         <input type="checkbox" name="book_olid" value="<%=book["olid"]%>" class="checkbox">
                     </div>
                 <% }) %>
             <%}%>
             <div>
-                <input class="btn shadow" id="del_btn" type="submit" value="Delete">
+                <input class="btn shadow roboto-slab-heading" id="del_btn" type="submit" value="Delete">
             </div>
         </form>
     </div>

@@ -2,26 +2,30 @@
     <title>Edit book</title>
     <meta charset="utf-8">
     <link href="styles.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Outfit:wght@100..900&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+</head>
 </head>
 <body>
     <%-include ("header.ejs")%>
         <div id="edit_book">
             <div id="book_info">
-                <h1><%=book_name%></h1>
+                <h1 class="roboto-slab-heading"><%=book_name%></h1>
                 <img id="book_cover" src="<%=img%>"/>
                     <%author_name.forEach((author)=>{%>
-                        <h3><%=author%></h3>
+                        <h3 class="roboto-slab-heading"><%=author%></h3>
                     <%})%>
             </div>
             <div id="review_sec" >
             <form method="post" action="/review" id="review_form" class="common_box">
                 <div id="review_desc">
-                    <h3>Review:</h3>
+                    <h3 class="roboto-slab-heading">Review:</h3>
                     <textarea name="review_desc" cols="30" rows="10" ><% if (locals.review){%><%=review %> <% } %></textarea>
                 </div>
                 <div id="rating">
-                    <h3>Enter rating out of 5:</h3>
-                    <input type="number" name="rating" min="1" max="5"  <% if (locals.rating){%>value="<%=rating%>"<% } %>/>
+                    <h3 class="roboto-slab-heading">Enter rating out of 5:</h3>
+                    <input type="number" name="rating" min="1" max="5" class="roboto-slab-heading" <% if (locals.rating){%>value="<%=rating%>"<% } %>/>
                 </div>
                 <input type="hidden" name="olid" value="<%=olid%>"/>
             <input type="hidden" name="book_name" value="<%=book_name%>">
@@ -31,7 +35,7 @@
             <%if (locals.pgArray){%>
                 <input type="hidden" name="pgArray" value="<%=pgArray%>">
             <%}%>
-            <input type="submit" value="submit" class="btn shadow" id="post_btn"/>
+            <input type="submit" value="Post Review" class="btn shadow roboto-slab-heading" id="post_btn"/>
         </div>
             
         </form>
