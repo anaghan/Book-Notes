@@ -6,9 +6,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Outfit:wght@100..900&family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
 </head>
-</head>
 <body>
-    <%-include ("header.ejs")%>
+        <%-include ("header.ejs")%>
         <div id="edit_book">
             <div id="book_info">
                 <h1 class="roboto-slab-heading"><%=book_name%></h1>
@@ -36,11 +35,11 @@
                 <input type="hidden" name="pgArray" value="<%=pgArray%>">
             <%}%>
             <input type="submit" value="Post Review" class="btn shadow roboto-slab-heading" id="post_btn"/>
-        </div>
-            
         </form>
-        
+        </div> 
         </div>
+        <%-include ("footer.ejs")%>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="script.js"></script>
+        
 </body>
