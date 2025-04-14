@@ -1,1 +1,2 @@
 # Book-Notes
+This website gives you the space to log your thoughts on the books you've read and give it a rating out of 5. It was built using EJS, CSS, and JavaScript, with a Node JS + Express backend and PostgreSQL as the database.CRUD operations are performed on a database and those operations are connected to the front-end. The Open Library API was integrated to allow book searching and to fetch book cover images dynamically.
